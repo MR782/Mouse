@@ -1,7 +1,7 @@
 ﻿//メモリリークを調べる
-//#define _CRTDBG_MAP_ALLOC
-//#include<stdlib.h>
-//#include<crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
+#include<stdlib.h>
+#include<crtdbg.h>
 
 #include "./dxlib/DxLib.h"
 #include"KeyBoard.h"
@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 	//メモリリーク確認
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//log.txtを作成しない
 	SetOutApplicationLogValidFlag(FALSE);
 	// 画面モードの設定

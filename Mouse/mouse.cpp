@@ -1,67 +1,70 @@
 #include "mouse.h"
 #include"DxLib.h"
 
-int Mouse::left_previus;//1フレーム前
+int Mouse::left_previous;//1フレーム前
 int Mouse::left_current;//作業領域
 //右クリック用
-int Mouse::right_previus;//１フレーム前
+int Mouse::right_previous;//１フレーム前
 int Mouse::right_current;//作業領域
 
 void Mouse::initialize()
 {
 	left_current = 0;
-	left_previus = 0;
+	left_previous = 0;
 	right_current = 0;
-	right_previus = 0;
+	right_previous = 0;
 }
 
 void Mouse::update()
 {
-	left_previus = left_current;
-	right_previus = right_current;
+	left_previous = left_current;
+	right_previous = right_current;
 
 	left_current = (GetMouseInput() & MOUSE_INPUT_LEFT);
 	right_current = (GetMouseInput() & MOUSE_INPUT_RIGHT);
 }
 
+//---------------------------------------------------------------------------
+//左クリック
+//---------------------------------------------------------------------------
 bool Mouse::left_mouse_down()
 {
-	return left_previus == 0 && left_current == 1;
+	return left_previous == 0 && left_current != 0;
 }
 
 bool Mouse::left_mouse_up()
 {
-	return left_previus == 1 && left_current == 0;
+	return left_previous != 0 && left_current == 0;
 }
 
 bool Mouse::left_mouse_press()
 {
-	return left_current == 1 && left_previus == 1;
+	return left_current != 0 && left_previous != 0;
 }
 
 bool Mouse::left_mouse_not_press()
 {
-	return left_current == 0 && left_previus == 0;
+	return left_current == 0 && left_previous == 0;
 }
-
-//右クリック-----------------------------------------------------------------
-
+//---------------------------------------------------------------------------
+//右クリック
+//---------------------------------------------------------------------------
 bool Mouse::right_mouse_down()
 {
-	return right_previus == 0 && right_current == 1;
+	return right_previous == 0 && right_current != 0;
 }
 
 bool Mouse::right_mouse_up()
 {
-	return right_previus == 1 && right_current == 0;
+	return right_previous != 0 && right_current == 0;
 }
 
 bool Mouse::right_mouse_press()
 {
-	return right_previus == 1 && right_current == 1;
+	return right_previous != 0 && right_current != 0;
 }
 
 bool Mouse::right_mouse_not_press()
 {
-	return right_previus == 0 && right_current == 0;
+	return right_previous == 0 && right_current == 0;
 }

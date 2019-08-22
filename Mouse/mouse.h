@@ -2,10 +2,10 @@
 
 class Mouse {
 	//左クリック用
-	static int left_previus;//1フレーム前
+	static int left_previous;//1フレーム前
 	static int left_current;//作業領域
 	//右クリック用
-	static int right_previus;//1フレーム前
+	static int right_previous;//1フレーム前
 	static int right_current;//作業領域
 public:
 	static void initialize();
